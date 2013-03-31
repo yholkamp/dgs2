@@ -19,6 +19,8 @@
         <p></p>
 
         <p class="view"><a href="https://github.com/yholkamp/dgs2">View the Project on GitHub <small>yholkamp/dgs2</small></a></p>
+        
+        <p class="view"><a href="report.pdf">View the project report</a></p>
 
 
         <ul>
@@ -30,51 +32,51 @@
       <section>
         <h1>DGS^2 - Distributed Grid Scheduler Simulator</h1>
 
-<p>The DGSS project implements a distributed version of a virtual grid system simulator, which includes a system of multiple
-schedulers with one elected master node to perform matchmaking. All system state is replicated over all nodes, and the
-system is fault-tolerant in the face of random node failures. Experimental results show decent scalability results,
-with minimal overhead in scenario with 5 grid scheduler (GS) nodes, 80 resource manager (RM) nodes and a workload of 40,000 jobs.</p>
+        <p>The DGSS project implements a distributed version of a virtual grid system simulator, which includes a system of multiple
+        schedulers with one elected master node to perform matchmaking. All system state is replicated over all nodes, and the
+        system is fault-tolerant in the face of random node failures. Experimental results show decent scalability results,
+        with minimal overhead in scenario with 5 grid scheduler (GS) nodes, 80 resource manager (RM) nodes and a workload of 40,000 jobs.</p>
 
-<p>Due to the distributed nature of the implementation, any number of failures of GS or RM nodes will not result in a system failure,
-as long as at least one GSNode survives the failures at all times. The system handles this by electing one GSNode to be the 'master' of the system,
-which will take on the responsibility of sequencing any messages sent through the system, providing a global ordering of events and an easy way to broadcast messages.</p>
+        <p>Due to the distributed nature of the implementation, any number of failures of GS or RM nodes will not result in a system failure,
+        as long as at least one GSNode survives the failures at all times. The system handles this by electing one GSNode to be the 'master' of the system,
+        which will take on the responsibility of sequencing any messages sent through the system, providing a global ordering of events and an easy way to broadcast messages.</p>
 
-<h2>Requirements</h2>
+        <h2>Requirements</h2>
 
-<ul>
-<li>Minimum: Java 1.6, recommend: Java 1.7 (for insight into the system and process CPU usage of nodes)</li>
-<li>Ant</li>
-<li>Optional: screen</li>
-</ul><h2>Usage</h2>
+        <ul>
+        <li>Minimum: Java 1.6, recommend: Java 1.7 (for insight into the system and process CPU usage of nodes)</li>
+        <li>Ant</li>
+        <li>Optional: screen</li>
+        </ul><h2>Usage</h2>
 
-<h3>System setup</h3>
+        <h3>System setup</h3>
 
-<ol>
-<li>Edit the <code>system.properties</code> file to contain all the external IP addresses of all of the machines that will participate in the system.</li>
-<li>Deploy the code to the machines that will participate.</li>
-<li>Execute <code>ant</code>.</li>
-<li>On every participating machine, execute <code>rmiregistry</code>.</li>
-<li>Start any number of GSNodes, using <code>./start-gs.sh &lt;external ip&gt;</code>.</li>
-<li>Start any number of RMNodes, using <code>./start-rm.sh &lt;external ip</code>.</li>
-</ol><h3>System usage</h3>
+        <ol>
+        <li>Edit the <code>system.properties</code> file to contain all the external IP addresses of all of the machines that will participate in the system.</li>
+        <li>Deploy the code to the machines that will participate.</li>
+        <li>Execute <code>ant</code>.</li>
+        <li>On every participating machine, execute <code>rmiregistry</code>.</li>
+        <li>Start any number of GSNodes, using <code>./start-gs.sh &lt;external ip&gt;</code>.</li>
+        <li>Start any number of RMNodes, using <code>./start-rm.sh &lt;external ip</code>.</li>
+        </ol><h3>System usage</h3>
 
-<ul>
-<li>Adding jobs
+        <ul>
+        <li>Adding jobs
 
-<ul>
-<li>Execute <code>./add-jobs.sh</code> in order to add a configurable number of jobs to the system, or</li>
-<li>Press <code>return</code> in the terminal window of the <code>./start-rm.sh</code> to immediately add a job to the RMNode.</li>
-</ul>
-</li>
-<li>Monitoring
+        <ul>
+        <li>Execute <code>./add-jobs.sh</code> in order to add a configurable number of jobs to the system, or</li>
+        <li>Press <code>return</code> in the terminal window of the <code>./start-rm.sh</code> to immediately add a job to the RMNode.</li>
+        </ul>
+        </li>
+        <li>Monitoring
 
-<ol>
-<li>Execute <code>./monitor-status.sh</code>
-</li>
-<li>Press <code>return</code> in order to retrieve the current job queue size, message queue size and CPU usage of all of the registered nodes in the system.</li>
-</ol>
-</li>
-</ul>
+        <ol>
+        <li>Execute <code>./monitor-status.sh</code>
+        </li>
+        <li>Press <code>return</code> in order to retrieve the current job queue size, message queue size and CPU usage of all of the registered nodes in the system.</li>
+        </ol>
+        </li>
+        </ul>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/yholkamp">yholkamp</a></p>
