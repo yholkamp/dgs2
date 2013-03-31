@@ -1,0 +1,79 @@
+package in4391.exercise.a.wantds;
+
+import in4391.exercise.a.core.RMNode;
+
+
+/**
+ * This class represents a Node within a virtual cluster. Nodes can run jobs, go up and go down.
+ *
+ * @author Niels Brouwers
+ */
+public class Node
+{
+    private NodeStatus status;
+    private Job runningJob = null;
+    private long startTime;
+
+    private RMNode handler;
+
+    /**
+     * Constructs a new Node object.
+     */
+    public Node(RMNode handler)
+    {
+        status = NodeStatus.Idle;
+        this.handler = handler;
+    }
+
+    /**
+     * @return the status of the node
+     */
+    public NodeStatus getStatus()
+    {
+        return status;
+    }
+
+    /**
+     * Starts a job at this node.
+     * <p/>
+     * <DL>
+     * <DT><B>Preconditions:</B>
+     * <DD>the node should be idle
+     * </DL>
+     */
+    public void startJob(Job job)
+    {
+        // preconditions
+        assert (status == NodeStatus.Idle) : "The status of a node should be idle when it starts a job, but it's not.";
+
+        runningJob = job;
+        runningJob.setStatus(JobStatus.Running);
+        startTime = System.currentTimeMillis();
+
+        status = NodeStatus.Busy;
+
+    }
+
+    /**
+     * Polls the node, the node checks if the job it is executing is done and fires a JobFinished
+     * event accordingly. It then updates its state.
+     */
+    public void poll()
+    {
+        if (runningJob != null) {
+            // check if the job has finished
+            if (System.currentTimeMillis() - startTime > runningJob.getDuration()) {
+                // job done
+                runningJob.setStatus(JobStatus.Done);
+
+                // fire event handler
+                handler.jobDone(runningJob);
+
+                // set node status
+                runningJob = null;
+                status = NodeStatus.Idle;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,13 @@
+
+bin/*
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# IDEA files
+.idea
+.idea_modules
+*.iml

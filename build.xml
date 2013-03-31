@@ -1,0 +1,13 @@
+<project name="project" default="compile" basedir=".">
+    <property name="src" location="src"/>
+    <property name="build" location="bin"/>
+    <property name="dist" location="dist"/>
+    
+    <target name="compile">
+        <javac srcdir="${src}" destdir="${build}" includeantruntime="false" debug="true">
+            <classpath>
+                <pathelement location="lib/*"/>
+            </classpath>
+        </javac>
+    </target>
+</project>
