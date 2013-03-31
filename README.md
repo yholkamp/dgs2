@@ -9,6 +9,8 @@ Due to the distributed nature of the implementation, any number of failures of G
 as long as at least one GSNode survives the failures at all times. The system handles this by electing one GSNode to be the 'master' of the system,
 which will take on the responsibility of sequencing any messages sent through the system, providing a global ordering of events and an easy way to broadcast messages.
 
+This project has been developed for the IN4391 - Distributed Computing Systems course at Delft University of Technology. The report submitted for this course [is also available](http://yholkamp.github.com/dgs2/report.pdf). 
+
 ## Requirements
 
 * Minimum: Java 1.6, recommend: Java 1.7 (for insight into the system and process CPU usage of nodes)
